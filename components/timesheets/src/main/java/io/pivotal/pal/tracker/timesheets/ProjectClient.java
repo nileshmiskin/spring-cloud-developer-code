@@ -1,18 +1,24 @@
 package io.pivotal.pal.tracker.timesheets;
 
+import io.pivotal.pal.tracker.restsupport.ServiceLocator;
 import org.springframework.web.client.RestOperations;
 
 public class ProjectClient {
 
+    private final ServiceLocator serviceLocator;
     private final RestOperations restOperations;
-    private final String endpoint;
 
-    public ProjectClient(RestOperations restOperations, String registrationServerEndpoint) {
+    public ProjectClient(ServiceLocator serviceLocator,
+                         RestOperations restOperations) {
+        this.serviceLocator = serviceLocator;
         this.restOperations = restOperations;
-        this.endpoint = registrationServerEndpoint;
     }
 
     public ProjectInfo getProject(long projectId) {
-        return restOperations.getForObject(endpoint + "/projects/" + projectId, ProjectInfo.class);
+        String endpoint = serviceLocator.lookUpServiceUrl("registration-server");
+        return restOperations.getForObject(endpoint + "/projects/"
+                + projectId, ProjectInfo.class);
     }
+
+
 }
