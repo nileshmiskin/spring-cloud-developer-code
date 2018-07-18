@@ -8,3 +8,9 @@ dependencies {
 
     testCompile project(":components:test-support")
 }
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+    }
+}

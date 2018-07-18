@@ -4,6 +4,7 @@ buildscript {
         springBootVersion = "1.5.9.RELEASE"
         springVersion = "4.3.13.RELEASE"
         jacksonVersion ="2.9.3"
+        springCloudVersion = 'Edgware.SR2'
     }
 
     repositories {
